@@ -1,0 +1,41 @@
+while ($row = $resultats->fetch()) {
+    // En-tête
+    $pdf->SetFont('Arial', 'B', 16);
+    $pdf->SetFillColor(240, 240, 240);
+    $pdf->Cell(0, 20, "Liste des enregistrements des patients", 0, 0, 'C', true);
+    $pdf->Ln(20);
+
+    // Données des patients
+    $pdf->SetFont('Arial', '', 12);
+    $pdf->Cell(40, 10, 'Nom complet de patient:', 1);
+    $pdf->Cell(0, 10, $row['nomComplet'], 1);
+    $pdf->Ln();
+    $pdf->Cell(40, 10, 'Le genre:', 1);
+    $pdf->Cell(0, 10, $row['sex'], 1);
+    $pdf->Ln();
+    $pdf->Cell(40, 10, 'Le téléphone:', 1);
+    $pdf->Cell(0, 10, $row['telphone'], 1);
+    $pdf->Ln();
+    $pdf->Cell(40, 10, 'La spécialiste:', 1);
+    $pdf->Cell(0, 10, $row['spécialiste'], 1);
+    $pdf->Ln();
+    $pdf->Cell(40, 10, 'Consultation:', 1);
+    $pdf->Cell(0, 10, $row['consultation'], 1);
+    $pdf->Ln();
+    $pdf->Cell(40, 10, 'Date:', 1);
+    $pdf->Cell(0, 10, $row['datee'], 1);
+    $pdf->Ln();
+    $pdf->Cell(40, 10, 'Le temps:', 1);
+    $pdf->Cell(0, 10, $row['timee'], 1);
+    $pdf->Ln();
+    $pdf->Cell(40, 10, 'Spécialiste 2:', 1);
+    $pdf->Cell(0, 10, $row['spécialiste2'], 1);
+    $pdf->Ln(20);
+}
+
+// Ajout des images
+$pdf->Image('CMC.png', 5, $pdf->GetY(), 30, 30);
+$pdf->Image('patient-7.png', $pdf->GetPageWidth() - 35, $pdf->GetY(), 30, 30);
+
+// Envoi du fichier PDF au navigateur
+$pdf->Output();
